@@ -4,7 +4,7 @@ import axios from 'axios'
  * Base URL for API requests.
  * @type {string}
  */
-const baseURL = 'https://example.mkx.com/'
+const baseURL = 'http://localhost:3000/api/'
 
 /**
  * Creates and configures an Axios instance with baseURL and request/response interceptors.
@@ -22,7 +22,7 @@ const createAxiosInstance = (baseURL) => {
      * @returns {import("axios").AxiosRequestConfig} - Updated Axios request config.
      */
     (config) => {
-      const Authorization = 'Bearer ~Your API Authorization~'
+      const Authorization = 'http://localhost:3000/api/'
       config.headers = { Authorization, ...config.headers }
       return config
     },

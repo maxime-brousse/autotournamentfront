@@ -1,26 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 import Card from 'Components/Home/Card'
 import RightColumn from 'Components/Home/RightColumn'
+import { tournamentDataFn } from 'Services/tournament'
 
 /**
  * Home component.
  * Represents the home page of the application.
  * @returns {JSX.Element} Home component JSX.
  */
-const Home = () => {
+export default function Home() {
+  const results = useData();
+
+  function useData() {
+    const [dataItem, setDataItem] = useState(null);
+    useEffect(() => {
+      let ignore = false;
+      tournamentDataFn().then((response) => {
+        if(!ignore)
+        {
+          setDataItem(response.map(tournament =>
+            <Card title={tournament.titreTournoi} date={tournament.dateTournoi} description={tournament.descriptionTournoi}  />
+          ))
+        }
+      });
+      return () => {
+        ignore = true;
+      };
+    });
+    return dataItem;
+  }
+
   return (
     <div className="flex flex-wrap">
       <div className="w-full p-4 md:w-3/4">
         {/* Display two cards */}
-        <Card title="TITLE HEADING" date="Title description, Apr 4, 2024" imageHeight="200px" description='Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco.' />
-        <Card title="TITLE HEADING" date="Title description, Apr 4, 2024" imageHeight="200px" description='une licorne' />
+        {results}
       </div>
       {/* Display right column component */}
       <RightColumn />
     </div>
   )
 }
-
-export default Home
