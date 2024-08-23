@@ -1,4 +1,4 @@
-import { Card as MuiCard, Paper, useTheme } from '@mui/material'
+import { Card as MuiCard} from '@mui/material'
 
 /**
  * Card component.
@@ -6,13 +6,14 @@ import { Card as MuiCard, Paper, useTheme } from '@mui/material'
  * @param {Object} props - Component props.
  * @param {string} props.title - Title of the card.
  * @param {string} props.date - Date of the card.
- * @param {string} props.imageHeight - Height of the image container.
+ * @param {string} props.jeux - Height of the image container.
  * @param {string} props.description - a description for the container
  * @returns {JSX.Element} Card component JSX.
  */
-const Card = ({ title, date, imageHeight, description }) => {
-  // Get theme mode to determine if it's dark
-  const isDark = useTheme().palette.mode === 'dark'
+const Card = ({ title, date, jeux, description }) => {
+
+  const urlImg = 'images/' + jeux.toLowerCase() + '.png';
+  console.log(urlImg);
 
   return (
     <MuiCard className="p-6 mb-6 bg-white rounded-lg shadow-lg" elevation={2}>
@@ -21,18 +22,10 @@ const Card = ({ title, date, imageHeight, description }) => {
       {/* Card date */}
       <h5 className="mb-4 text-gray-500">{date}</h5>
       {/* Image container */}
-      <Paper
-        className="flex items-center justify-center rounded"
-        style={{
-          height: imageHeight,
-          backgroundColor: isDark ? '#121212' : '#E4E4E7',
-        }}
-        elevation={0}
-      >
-        Image
-      </Paper>
+      <div className='grid w-full place-items-center rounded-lg p-6' >
+          <img src={urlImg} alt='une présentation du jeu concernant ce tournoi'/>
+      </div>
       {/* Card content */}
-      <p className="my-3">Some text..</p>
       <p>
         {description}
       </p>

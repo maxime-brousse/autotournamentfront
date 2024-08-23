@@ -1,6 +1,5 @@
 import React from 'react'
 import { Paper, useTheme } from '@mui/material'
-import Card from '../Card'
 
 /**
  * RightColumn component.
@@ -13,8 +12,6 @@ const RightColumn = () => {
 
   return (
     <div className="w-full !rounded-none p-4 md:w-1/4">
-      {/* About Me card */}
-      <Card title="About Me" imageHeight="100px" />
       {/* Popular Post section */}
       <Paper className="p-6 mb-6 bg-white rounded-lg shadow-lg" elevation={2}>
         <h3 className="mb-4 text-xl">Popular Post</h3>

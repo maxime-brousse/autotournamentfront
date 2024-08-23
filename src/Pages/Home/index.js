@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import Card from 'Components/Home/Card'
-import RightColumn from 'Components/Home/RightColumn'
 import { tournamentDataFn } from 'Services/tournament'
+import RightColumn from 'Components/Home/RightColumn';
 
 /**
  * Home component.
@@ -20,14 +20,14 @@ export default function Home() {
         if(!ignore)
         {
           setDataItem(response.map(tournament =>
-            <Card title={tournament.titreTournoi} date={tournament.dateTournoi} description={tournament.descriptionTournoi}  />
+            <Card title={tournament.titreTournoi} date={tournament.dateTournoi} jeux={tournament.jeux} description={tournament.descriptionTournoi}  />
           ))
         }
       });
       return () => {
         ignore = true;
       };
-    });
+    }, []);
     return dataItem;
   }
 
