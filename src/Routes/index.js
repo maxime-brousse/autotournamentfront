@@ -57,7 +57,14 @@ const routes = [
   },
   {
     id: 6,
-    path: '/sign-In',
+    path: '/sign-up',
+    element: <SignUp />,
+    title: 'se connecter',
+    status: true,
+  },
+  {
+    id: 7,
+    path: '/sign-in',
     element: <SignIn />,
     title: 's\'inscrire',
     status: true,

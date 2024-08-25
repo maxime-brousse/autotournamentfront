@@ -20,7 +20,7 @@ export default function Home() {
         if(!ignore)
         {
           setDataItem(response.map(tournament =>
-            <Card title={tournament.titreTournoi} date={tournament.dateTournoi} jeux={tournament.jeux} description={tournament.descriptionTournoi}  />
+            <Card key={tournament.idTournoi} title={tournament.titreTournoi} date={tournament.dateTournoi} jeux={tournament.jeux} description={tournament.descriptionTournoi}  />
           ))
         }
       });

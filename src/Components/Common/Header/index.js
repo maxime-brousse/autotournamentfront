@@ -54,10 +54,10 @@ const Header = ({ setMode, mode }) => {
         {/* Dark mode / Light mode toggle button */}
         <div className='flex items-center gap-3'>
           <Link
-            to="/sign-In"
+            to="/sign-up"
             className="block float-left p-3 text-white hover:text-black hover:bg-white"
           >
-            S'inscrire
+            Se connecter
           </Link>
           <IconButton onClick={() => setMode(isDark ? 'light' : 'dark')} className="float-right">
             {isDark ? <LightMode color="warning" /> : <DarkMode color="info" />}

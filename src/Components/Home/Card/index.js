@@ -22,7 +22,7 @@ const Card = ({ title, date, jeux, description }) => {
       {/* Card date */}
       <h5 className="mb-4 text-gray-500">{date}</h5>
       {/* Image container */}
-      <div className='grid w-full place-items-center rounded-lg p-6' >
+      <div className='grid w-full place-items-center rounded-lg p-6 aspect-video' >
           <img src={urlImg} alt='une présentation du jeu concernant ce tournoi'/>
       </div>
       {/* Card content */}
