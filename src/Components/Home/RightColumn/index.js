@@ -24,7 +24,7 @@ const RightColumn = () => {
         {
           setDataItem(response.map(user => {
             compteur = compteur + 1;
-            return <h2><EmojiEventsIcon style={{ fontSize: 40, color: colorArray[compteur] }} />{user.pseudonyme} : {user.point} point</h2>
+            return <h2 key={compteur} className='sm-text'><EmojiEventsIcon  style={{ fontSize: 40, color: colorArray[compteur] }} />{user.pseudonyme} : {user.point} points</h2>
           }))
         }
       });

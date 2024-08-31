@@ -13,7 +13,6 @@ import { Card as MuiCard} from '@mui/material'
 const Card = ({ title, date, jeux, description }) => {
 
   const urlImg = 'images/' + jeux.toLowerCase() + '.png';
-  console.log(urlImg);
 
   return (
     <MuiCard className="p-6 mb-6 bg-white rounded-lg shadow-lg" elevation={2}>

@@ -1,6 +1,7 @@
 import NotFound from 'NotFound'
 import { AboutUs, ContactUs, Home, Tournament, Users } from 'Pages'
 import { SignIn, SignUp } from 'Authentication'
+import CreateUser from 'Pages/Users/createUser'
 
 /**
  * Array of route objects defining the routes for the application.
@@ -67,6 +68,13 @@ const routes = [
     path: '/sign-up',
     element: <SignUp />,
     title: 's\'inscrire',
+    status: true,
+  },
+  {
+    id: 8,
+    path: '/createUser',
+    element: <CreateUser />,
+    title: 'Créer utililsateur',
     status: true,
   },
 ]
