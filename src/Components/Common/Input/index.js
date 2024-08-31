@@ -1,5 +1,7 @@
 
 
+import React, { createContext, useContext } from 'react'
+
 /**
  * Card component.
  * Represents a card element with a title, date, image, and text content.
@@ -8,12 +10,13 @@
  * @returns {JSX.Element} Card component JSX.
  */
 const Input = ({ name }) => {
-
+    const ThemeProvider = createContext(null);
+    const theme = useContext(ThemeProvider);
     const renderName = name[0].toUpperCase() + name.slice(1);
 
 return (
     <div>
-        <label htmlFor={name} className="block text-sm font-medium leading-6 text-gray-900">
+        <label htmlFor={name} className="block text-sm font-medium leading-6" style={{'text-color' : theme}}>
             {renderName}
         </label>
         <div className="mt-2">

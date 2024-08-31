@@ -1,5 +1,7 @@
 
 
+import React, { createContext, useContext } from 'react'
+
 /**
  * Card component.
  * Represents a card element with a title, date, image, and text content.
@@ -7,11 +9,12 @@
  * @returns {JSX.Element} Card component JSX.
  */
 const PasswordInput = () => {
-
+    const ThemeProvider = createContext(null);
+    const theme = useContext(ThemeProvider);
 return (
     <div>
         <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+            <label htmlFor="password" className="block text-sm font-medium leading-6" style={{'text-color' : theme}}>
                 Mot de passe
             </label>
             <div className="text-sm">

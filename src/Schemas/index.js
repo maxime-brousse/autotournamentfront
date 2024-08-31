@@ -5,18 +5,15 @@ import * as Yup from 'yup'
  * @type {import('yup').ObjectSchema}
  */
 const SignupSchema = Yup.object().shape({
-  name: Yup.string()
-    .required('Name is required')
-    .min(2, 'Name must be at least 2 characters')
-    .max(50, 'Name must be at most 50 characters'),
-  email: Yup.string().email('Invalid email').required('Email is required'),
-  phone: Yup.string()
-    .matches(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits')
-    .required('Phone number is required'),
+  pseudonyme: Yup.string()
+    .required('un pseudonyme est nécessaire')
+    .matches(/[^[\p{L}|\p{N}|\s]/, 'Votre pseudo ne doit pas avor de caractère spéciaux')
+    .max(50, 'Votre pseudo doit faire moins de 50 charactère'),
+  mail: Yup.string().email('email invalide').required('Un émail est nécessaire'),
   password: Yup.string()
-    .required('Password is required')
-    .min(6, 'Password must be at least 6 characters')
-    .max(20, 'Password must be at most 20 characters'),
+    .required('Un mot de passe est nécessaire')
+    .min(6, 'Mot de passe doit faire plus que 6 charactère')
+    .max(20, 'Mot de passe doit faire moins de 20 charactère'),
 })
 
 /**
@@ -24,11 +21,11 @@ const SignupSchema = Yup.object().shape({
  * @type {import('yup').ObjectSchema}
  */
 const SignInSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Email is required'),
+  mail: Yup.string().email('email invalide').required('Un émail est nécessaire'),
   password: Yup.string()
-    .required('Password is required')
-    .min(6, 'Password must be at least 6 characters')
-    .max(20, 'Password must be at most 20 characters'),
+    .required('Un mot de passe est nécessaire')
+    .min(6, 'Mot de passe doit faire plus que 6 charactère')
+    .max(20, 'Mot de passe doit faire moins de 20 charactère'),
 })
 
 export { SignInSchema, SignupSchema }

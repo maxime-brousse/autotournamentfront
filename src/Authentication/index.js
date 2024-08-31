@@ -1,3 +1,3 @@
-import SignIn from 'Authentication/SIgnIn'
-import SignUp from 'Authentication/SignUp'
+import SignIn from 'Authentication/SignUp'
+import SignUp from 'Authentication/SignIn'
 export { SignIn, SignUp }

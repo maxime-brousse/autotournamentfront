@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Paper, useTheme } from '@mui/material'
+import { homeScoresFn } from 'Services/Home/topScore'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 /**
  * RightColumn component.
@@ -7,30 +9,38 @@ import { Paper, useTheme } from '@mui/material'
  * @returns {JSX.Element} RightColumn component JSX.
  */
 const RightColumn = () => {
-  // Determine if the theme mode is dark
-  const isDark = useTheme().palette.mode === 'dark'
+  const results = useData();
+
+  function useData() {
+    const [dataItem, setDataItem] = useState(null);
+
+    useEffect(() => {
+      var compteur = -1;
+      const colorArray = ["gold", "silver", "#CD7F32"];
+
+      let ignore = false;
+      homeScoresFn().then((response) => {
+        if(!ignore)
+        {
+          setDataItem(response.map(user => {
+            compteur = compteur + 1;
+            return <h2><EmojiEventsIcon style={{ fontSize: 40, color: colorArray[compteur] }} />{user.pseudonyme} : {user.point} point</h2>
+          }))
+        }
+      });
+      return () => {
+        ignore = true;
+      };
+    }, []);
+    return dataItem;
+  }
 
   return (
     <div className="w-full !rounded-none p-4 md:w-1/4">
       {/* Popular Post section */}
       <Paper className="p-6 mb-6 bg-white rounded-lg shadow-lg" elevation={2}>
-        <h3 className="mb-4 text-xl">Popular Post</h3>
-        {/* Three image placeholders */}
-        {[1, 2, 3].map((index) => (
-          <Paper
-            key={index}
-            elevation={0}
-            className="flex items-center justify-center mb-2"
-            style={{ height: '100px', backgroundColor: isDark ? '#121212' : '#E4E4E7' }}
-          >
-            Image {index}
-          </Paper>
-        ))}
-      </Paper>
-      {/* Follow Me section */}
-      <Paper className="p-6 bg-white rounded-lg shadow-lg" elevation={2}>
-        <h3 className="mb-4 text-xl">Follow Me</h3>
-        <p>Some text..</p>
+        <h3 className="mb-4 text-xl">Hall of fame</h3>
+        {results}
       </Paper>
     </div>
   )
