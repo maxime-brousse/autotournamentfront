@@ -9,7 +9,7 @@ import React, { createContext, useContext } from 'react'
  * @param {string} props.name - Title of the card.
  * @returns {JSX.Element} Card component JSX.
  */
-const Input = ({ name }) => {
+const Input = ({ name}) => {
     const ThemeProvider = createContext(null);
     const theme = useContext(ThemeProvider);
     const renderName = name[0].toUpperCase() + name.slice(1);

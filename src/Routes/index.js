@@ -2,6 +2,7 @@ import NotFound from 'NotFound'
 import { AboutUs, ContactUs, Home, Tournament, Users } from 'Pages'
 import { SignIn, SignUp } from 'Authentication'
 import CreateUser from 'Pages/Users/createUser'
+import ModifyUser from 'Pages/Users/modifyUser'
 
 /**
  * Array of route objects defining the routes for the application.
@@ -75,6 +76,13 @@ const routes = [
     path: '/createUser',
     element: <CreateUser />,
     title: 'Créer utililsateur',
+    status: true,
+  },
+  {
+    id: 9,
+    path: '/user/:id',
+    element: <ModifyUser />,
+    title: 'Modifier utililsateur',
     status: true,
   },
 ]

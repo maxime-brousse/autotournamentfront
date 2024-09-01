@@ -73,7 +73,7 @@ const Header = ({ setMode, mode }) => {
         </div>
         {/* Dark mode / Light mode toggle button */}
         <div className='flex items-center gap-3'>
-          { token ?
+          { token && !isExpired(token) ?
             <p className='text-white'>{pseudonyme}</p> :
             <Link
               to="/sign-up"

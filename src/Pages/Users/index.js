@@ -3,21 +3,38 @@ import { useState } from 'react';
 import { usersDataFn } from 'Services/Users';
 import { TokenContext } from 'Context'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { usersDeleteFn } from 'Services/Users';
+
 
 const Users = () => {
   const rowsArray = useData();
   const { token } = useContext(TokenContext);
+  const [messageError, setMessageError] = useState(null);
+  const navigate = useNavigate();
+
+  async function handleDelete(id) {
+    try {
+        await usersDeleteFn(token, id).then(() => {
+            navigate("/Users");
+        });
+    } catch (error) {
+      if (error.response) {
+          setMessageError(error.response.data);
+      }
+    }
+  }
 
   function useData() {
     const [dataItem, setDataItem] = useState(null);
+
     useEffect(() => {
       let ignore = false;
       usersDataFn(token).then((response) => {
         if(!ignore)
         {
           setDataItem(response.map(user =>
-            <TableRow
+              <TableRow
                 key={user.idUtilisateur}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
@@ -26,12 +43,14 @@ const Users = () => {
               <TableCell align="right">{user.point}</TableCell>
               <TableCell align="right">{user.isAdmin}</TableCell>
               <TableCell align="center" className='flex justify-around'>
-                <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>
+                <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleDelete(user.idUtilisateur)}>
                     Supprimer
                 </button>
-                <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>
-                  Modifier
-                </button>
+                <Link to={`/user/${user.idUtilisateur}`}>
+                  <button className='bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded'>
+                    Modifier
+                  </button>
+                </Link>
               </TableCell>
             </TableRow>
           ))
@@ -47,6 +66,7 @@ const Users = () => {
   return (<div className="flex flex-col h-[87vh]">
     <div className='w-full flex justify-around my-5'>
       <h2>Tableau des Utilisateurs d'AutoTournament</h2>
+      <p className="text-lg text-red-500 font-medium">{messageError || ""}</p>
       <Link to="/createUser">
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
           Créer un Utilisateur
