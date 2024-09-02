@@ -8,7 +8,7 @@ import React from 'react'
  */
 const Footer = () => {
   return (
-    <div className="bottom-0 flex items-center h-[5vh] justify-center p-2 text-white bg-black">
+    <div className="bottom-0 flex items-center h-[5vh] justify-center p-2 text-white bg-black mt-6">
       © 2024 autoTournament Maxime Brousse
     </div>
   )

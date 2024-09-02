@@ -63,7 +63,7 @@ const Users = () => {
     return dataItem;
   }
 
-  return (<div className="flex flex-col h-[87vh]">
+  return (<div className="flex flex-col">
     <div className='w-full flex justify-around my-5'>
       <h2>Tableau des Utilisateurs d'AutoTournament</h2>
       <p className="text-lg text-red-500 font-medium">{messageError || ""}</p>

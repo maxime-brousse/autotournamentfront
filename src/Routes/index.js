@@ -3,6 +3,8 @@ import { AboutUs, ContactUs, Home, Tournament, Users } from 'Pages'
 import { SignIn, SignUp } from 'Authentication'
 import CreateUser from 'Pages/Users/createUser'
 import ModifyUser from 'Pages/Users/modifyUser'
+import CreateTournoi from 'Pages/Tournament/createTournoi'
+import ModifyTournoi from 'Pages/Tournament/modifyTournoi'
 
 /**
  * Array of route objects defining the routes for the application.
@@ -83,6 +85,20 @@ const routes = [
     path: '/user/:id',
     element: <ModifyUser />,
     title: 'Modifier utililsateur',
+    status: true,
+  },
+  {
+    id: 10,
+    path: '/createTournoi',
+    element: <CreateTournoi />,
+    title: 'Créer un tournoi',
+    status: true,
+  },
+  {
+    id: 11,
+    path: '/tournoi/:id',
+    element: <ModifyTournoi />,
+    title: 'Modifier tournoi',
     status: true,
   },
 ]
