@@ -22,6 +22,16 @@ export const userDataFn = async (token, id) => {
     return response
 }
 
+export const profilDataFn = async (token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+    const response = (await axiosInstance.get("/profil", config));
+    return response
+}
+
 export const usersCreateFn = async (token, data) => {
     const config = {
         headers: {
@@ -40,6 +50,16 @@ export const usersModifyFn = async (token, id, data) => {
         }
     };
     const response = (await axiosInstance.put(`/user/modify/${id}`, data, config,));
+    return response
+}
+
+export const profilModifyFn = async (token, data) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+    const response = (await axiosInstance.put('/profil/modify', data, config));
     return response
 }
 

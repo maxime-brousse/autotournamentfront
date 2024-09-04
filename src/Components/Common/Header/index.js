@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { DarkMode, LightMode } from '@mui/icons-material'
-import { IconButton, Paper } from '@mui/material'
-import { Link } from 'react-router-dom'
-import { TokenContext } from 'Context'
-import { decodeToken, isExpired } from 'react-jwt'
+import React, { useContext, useEffect, useState } from 'react';
+import { DarkMode, LightMode } from '@mui/icons-material';
+import { IconButton, Paper } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { TokenContext } from 'Context';
+import { decodeToken, isExpired } from 'react-jwt';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Header component.
@@ -16,18 +18,25 @@ import { decodeToken, isExpired } from 'react-jwt'
 const Header = ({ setMode, mode }) => {
   // Determine if the mode is dark
   const isDark = mode === 'dark'
-  const [pseudonyme, setPseudo] = useState(null);
+  const [mail, setMail] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
-  const { token } = useContext(TokenContext);
+  const { token, setToken } = useContext(TokenContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(!isExpired(token)) {
       const decodedToken = decodeToken(token);
-      setPseudo(decodedToken.userPseudonyme);
+      setMail(decodedToken.mail);
       setIsAdmin(decodedToken.isAdmin);
-      console.log(decodedToken);
     }
-  }, [token, setPseudo, setIsAdmin]);
+  }, [token, setMail, setIsAdmin]);
+
+  function handleLogout() {
+      setToken('');
+      setIsAdmin(false);
+      localStorage.removeItem('authToken');
+      navigate('/');
+  }
 
   return (
     <Paper className="flex flex-col !rounded-none">
@@ -74,7 +83,10 @@ const Header = ({ setMode, mode }) => {
         {/* Dark mode / Light mode toggle button */}
         <div className='flex items-center gap-3'>
           { token && !isExpired(token) ?
-            <p className='text-white'>{pseudonyme}</p> :
+            <div className='flex flex-row items-center'>
+              <LogoutIcon onClick={() => handleLogout()} style={{ cursor : 'pointer', color:'white' }} />
+              <Link to="/profil" className='block float-left p-3 text-white hover:text-black hover:bg-white'>{mail}</Link>
+            </div> :
             <Link
               to="/sign-up"
               className="block float-left p-3 text-white hover:text-black hover:bg-white"

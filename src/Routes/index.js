@@ -5,6 +5,7 @@ import CreateUser from 'Pages/Users/createUser'
 import ModifyUser from 'Pages/Users/modifyUser'
 import CreateTournoi from 'Pages/Tournament/createTournoi'
 import ModifyTournoi from 'Pages/Tournament/modifyTournoi'
+import Profil from 'Pages/Users/profil'
 
 /**
  * Array of route objects defining the routes for the application.
@@ -99,6 +100,13 @@ const routes = [
     path: '/tournoi/:id',
     element: <ModifyTournoi />,
     title: 'Modifier tournoi',
+    status: true,
+  },
+  {
+    id: 12,
+    path: '/profil',
+    element: <Profil />,
+    title: 'Modifier profil user',
     status: true,
   },
 ]
