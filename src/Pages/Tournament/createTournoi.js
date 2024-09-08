@@ -25,7 +25,8 @@ const CreateTournoi = () => {
                 "descriptionTournoi" : formData.get("descriptionTournoi"),
                 "dateTournoi" : formData.get("dateTournoi"),
                 "isSolo" : checkBox === "on" ? true : false,
-                "récompensePoint" : parseInt(formData.get("récompensePoint"), 10)
+                "récompensePoint" : parseInt(formData.get("récompensePoint"), 10),
+                "nbJoueursMax" : parseInt(formData.get("nbJoueursMax"), 10)
             }
             if(CreateTournamentSchema.validateSync(data)) {
                 await tournamentCreateFn(token, data).then((response) => {
@@ -64,6 +65,7 @@ const CreateTournoi = () => {
                                 id="dateTournoi"
                                 name="dateTournoi"
                                 type="date"
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
                     </div>
                 </div>
@@ -95,8 +97,22 @@ const CreateTournoi = () => {
                     </div>
                 </div>
 
+                <div>
+                    <label htmlFor="nbJoueursMax" className="block text-sm font-medium leading-6" style={{'text-color' : theme}}>
+                        nombre de joueurs du tournoi
+                    </label>
+                    <div className="mt-2">
+                        <select name="nbJoueursMax" id="nbJoueursMax" className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm sm:text-sm sm:leading-6'>
+                            <option value="8">8</option>
+                            <option value="16" selected>16</option>
+                            <option value="32">32</option>
+                            <option value="64">64</option>
+                        </select>
+                    </div>
+                </div>
 
-                <p className="text-lg text-red-500 font-medium" >{messageError ? messageError : ""}</p>
+
+                <p className="text-lg text-red-500 font-medium" onClick={() => setMessageError('')} >{messageError ? messageError : ""}</p>
 
                 <div>
                 <button

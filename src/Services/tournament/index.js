@@ -46,3 +46,14 @@ export const tournamentDeleteFn = async (token, id) => {
   const response = (await axiosInstance.delete(`/tournament/${id}`, config,));
   return response
 }
+
+export const tournamentInscription = async (token, id, mail) => {
+  const config = {
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  };
+  console.log('tournoi : ' + id + ' : ' + mail);
+  const response = (await axiosInstance.post(`/inscription/${id}`, {'mail' : mail}, config,));
+  return response
+}

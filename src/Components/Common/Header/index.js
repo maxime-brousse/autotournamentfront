@@ -67,18 +67,15 @@ const Header = ({ setMode, mode }) => {
             </Link>
             ) : null
           }
-          <Link
-            to="/about-us"
-            className="block float-left p-3 text-white hover:text-black hover:bg-white"
-          >
-            à propos
-          </Link>
-          <Link
-            to="/contact-us"
-            className="block float-left p-3 text-white hover:text-black hover:bg-white"
-          >
-            contactez nous
-          </Link>
+          { mail && !isExpired(token) ? (
+              <Link
+                to="/recherche"
+                className="block float-left p-3 text-white hover:text-black hover:bg-white"
+              >
+                Recherche tournoi
+              </Link>
+            ) : null
+          }
         </div>
         {/* Dark mode / Light mode toggle button */}
         <div className='flex items-center gap-3'>

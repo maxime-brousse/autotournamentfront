@@ -147,7 +147,7 @@ const ModifyUser = () => {
                         </div>
                     </div>
 
-                    <p className="text-lg text-red-500 font-medium">{messageError || ""}</p>
+                    <p className="text-lg text-red-500 font-medium" onClick={() => setMessageError('')}>{messageError || ""}</p>
 
                     <div>
                         <button

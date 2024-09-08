@@ -58,7 +58,7 @@ const SignIn = () => {
 
             <PasswordInput />
 
-            <p className="text-lg text-red-500 font-medium" >{messageError ? messageError : ""}</p>
+            <p className="text-lg text-red-500 font-medium"  onClick={() => setMessageError('')}>{messageError ? messageError : ""}</p>
 
             <div>
               <button

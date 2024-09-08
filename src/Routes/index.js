@@ -1,5 +1,5 @@
 import NotFound from 'NotFound'
-import { AboutUs, ContactUs, Home, Tournament, Users } from 'Pages'
+import { ContactUs, Home, Recherche, Tournament, Users } from 'Pages'
 import { SignIn, SignUp } from 'Authentication'
 import CreateUser from 'Pages/Users/createUser'
 import ModifyUser from 'Pages/Users/modifyUser'
@@ -48,8 +48,8 @@ const routes = [
   },
   {
     id: 4,
-    path: '/about-us',
-    element: <AboutUs />,
+    path: '/recherche',
+    element: <Recherche />,
     title: 'à propos',
     status: true,
   },
@@ -58,7 +58,7 @@ const routes = [
     path: '/contact-us',
     element: <ContactUs />,
     title: 'nous contactez',
-    status: true,
+    status: false,
   },
   {
     id: 6,

@@ -42,6 +42,8 @@ const Tournament = () => {
               <TableCell align="right">{tournament.dateTournoi}</TableCell>
               <TableCell align="right">{tournament.récompensePoint}</TableCell>
               <TableCell align="right">{tournament.isSolo}</TableCell>
+              <TableCell align="right">{tournament.nbJoueurs}</TableCell>
+              <TableCell align="right">{tournament.nbJoueursMax}</TableCell>
               <TableCell align="center" className='flex justify-around'>
                 <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleDelete(tournament.idTournoi)}>
                     Supprimer
@@ -84,6 +86,8 @@ const Tournament = () => {
               <TableCell align="right">date du tournoi</TableCell>
               <TableCell align="center">récompense du tournoi</TableCell>
               <TableCell align="center">isSolo</TableCell>
+              <TableCell align="center">nombre participant</TableCell>
+              <TableCell align="center">nombre de joueurs max</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

@@ -16,6 +16,7 @@ const ModifyTournoi = () => {
     const [descriptionTournoi, setDescriptionTournoi] = useState('');
     const [isSolo, setIsSolo] = useState(false);
     const [récompensePoint, setRécompensePoint] = useState(0);
+    const [nbJoueursMax, setNbJoueursMax] = useState(0);
 
     const navigate = useNavigate();
     const { token } = useContext(TokenContext);
@@ -30,7 +31,8 @@ const ModifyTournoi = () => {
             descriptionTournoi,
             récompensePoint,
             isSolo,
-            titreTournoi
+            titreTournoi,
+            nbJoueursMax
         };
 
         try {
@@ -59,6 +61,7 @@ const ModifyTournoi = () => {
                 setDateTournoi(tournoi.dateTournoi.slice(0, 10));
                 setIsSolo(tournoi.isSolo === 1);
                 setRécompensePoint(tournoi.récompensePoint);
+                setNbJoueursMax(tournoi.nbJoueursMax);
             }
         });
         return () => {
@@ -134,6 +137,7 @@ const ModifyTournoi = () => {
                                     type="date"
                                     value={dateTournoi}
                                     onChange={(e) => setDateTournoi(e.target.value)}
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                         </div>
                     </div>
@@ -168,7 +172,27 @@ const ModifyTournoi = () => {
                         </div>
                     </div>
 
-                    <p className="text-lg text-red-500 font-medium">{messageError || ""}</p>
+                    <div>
+                    <label htmlFor="nbJoueursMax" className="block text-sm font-medium leading-6" style={{'text-color' : theme}}>
+                        nombre de joueurs du tournoi
+                    </label>
+                    <div className="mt-2">
+                        <select
+                            name="nbJoueursMax"
+                            id="nbJoueursMax"
+                            value={nbJoueursMax}
+                            onChange={(e) => setNbJoueursMax(parseInt(e.target.value, 10))}
+                            className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm sm:text-sm sm:leading-6'
+                        >
+                            <option value="8">8</option>
+                            <option value="16" selected>16</option>
+                            <option value="32">32</option>
+                            <option value="64">64</option>
+                        </select>
+                    </div>
+                </div>
+
+                    <p className="text-lg text-red-500 font-medium" onClick={() => setMessageError('')}>{messageError || ""}</p>
 
                     <div>
                         <button
